@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScrapeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/test', ScrapeController::class);
+// Route::get('/test', function() {
+//     $crawler = Goutte::request('GET', 'https://duckduckgo.com/html/?q=Laravel');
+//     $crawler->filter('.result__title .result__a')->each(function ($node) {
+//       dump($node->text());
+//     });
+//     return view('welcome');
+// });
+
+Route::get('/test', ScrapeController::class);

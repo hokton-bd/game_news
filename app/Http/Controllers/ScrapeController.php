@@ -14,6 +14,12 @@ class ScrapeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        sleep(1);
+        $url = 'https://valorantnews.jp/';
+        $crawler = \Goutte::request('GET', $url);
+        $crawler->filter('#post_list_tab_1 .-type-list2 h2.p-postList__title')->each(function ($node) {
+            dump($node->text());
+        });
+
     }
 }
