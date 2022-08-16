@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScrapeController;
+use App\Http\Controllers\Valorant\ScrapeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +26,4 @@ Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/test', ScrapeController::class);
+Route::get('/valorant', [ScrapeController::class, 'run']);
