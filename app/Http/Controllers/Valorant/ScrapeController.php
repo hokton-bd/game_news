@@ -10,11 +10,14 @@ class ScrapeController extends Controller
 {
     protected $host = 'https://valorantnews.jp/';
 
-    protected function makeCrawler($url) {
+    protected function makeCrawler($url) 
+    {
         return \Goutte::request('GET', $url);
     }
 
-    public function run() {
+    public function run() 
+    {
+        $this->refresh_table();
         $this->saveUrls();
         $urls = ValorantUrl::all();
         foreach ($urls as $item) {
@@ -34,15 +37,8 @@ class ScrapeController extends Controller
                 });
     }
 
-    public function getTitle($crawler) {
-        $crawler->filter('#post_list_tab_1 .-type-list2 h2.p-postList__title')
-                ->each(function($node) {
-                    echo nl2br($node->text().PHP_EOL);
-                });
-    }
-
-    public function saveArticles($url) {
-
+    public function saveArticles($url) 
+    {
         $crawler = $this->makeCrawler($url);
         $title = $crawler->filter('h1.c-postTitle__ttl')
                          ->text();
@@ -52,6 +48,11 @@ class ScrapeController extends Controller
             'url' => $url
         ]);
 
+    }
+
+    public function refresh_table() 
+    {
+        ValorantUrl::truncate();
     }
 
 }
