@@ -195,6 +195,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\Valorant\ScrapeServiceProvider::class,
 
     ],
 
@@ -212,6 +213,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Goutte' => Weidner\Goutte\GoutteFacade::class, 
+        'Scrape' => App\Facades\Valorant\Scrape::class,
     ])->toArray(),
 
 ];
