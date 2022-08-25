@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('scrape:run')->dailyAt('11:00');
+        $schedule->command('scrape:run')->dailyAt('13:00');
+        // $schedule->command('scrape:run')->everyMinute();
     }
 
     /**
