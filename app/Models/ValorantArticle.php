@@ -11,7 +11,8 @@ class ValorantArticle extends Model
 
     protected $fillable = [
         'title',
-        'url'
+        'url',
+        'thumbnail_url'
     ];
 
 }

@@ -42,10 +42,14 @@ class Scrape
         $crawler = $this->makeCrawler($url);
         $title = $crawler->filter('h1.c-postTitle__ttl')
                          ->text();
-        
+        $thumbnail_url = $crawler->filter('img.p-articleThumb__img')
+                                 ->eq(1)
+                                 ->attr('src');
+                                 
         ValorantArticle::create([
             'title' => $title,
-            'url' => $url
+            'url' => $url,
+            'thumbnail_url' => $thumbnail_url
         ]);
 
     }

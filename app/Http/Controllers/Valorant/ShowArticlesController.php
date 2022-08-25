@@ -18,9 +18,4 @@ class ShowArticlesController extends Controller
         return view('valorant.index', compact('articles'));
     }
 
-    public function test()
-    {
-        \Scrape::hello();
-    }
-
 }

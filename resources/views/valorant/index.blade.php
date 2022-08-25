@@ -34,7 +34,18 @@
 
         <main>
             @foreach ($articles as $item)
-                <p><a href="{{$item->url}}">{{$item->title}}</a></p>
+                <a class="card mb-3 display-block text-decoration-none" style="max-width: 540px;" href="{{$item->url}}">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img class="img-fluid " src="{{$item->thumbnail_url}}" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">{{$item->title}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             @endforeach
         </main>
 
