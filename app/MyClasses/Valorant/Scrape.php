@@ -42,16 +42,27 @@ class Scrape
         $crawler = $this->makeCrawler($url);
         $title = $crawler->filter('h1.c-postTitle__ttl')
                          ->text();
-        $thumbnail_url = $crawler->filter('img.p-articleThumb__img')
-                                 ->eq(1)
-                                 ->attr('src');
-                                 
+
+        $thumbnail_url = $crawler->filter('img.p-articleThumb__img');
+
+        if(strpos($thumbnail_url->attr('src'), 'data:image') === false) //data:imageが含まれていない場合
+        {
+            return $this->create($title, $url, $thumbnail_url->attr('src'));
+        }
+        else //含まれている場合 
+        {
+            return $this->create($title, $url, $thumbnail_url->eq(1)->attr('src'));            
+        }
+
+    }
+
+    public function create($title, $url, $thumbnail_url)
+    {
         ValorantArticle::create([
             'title' => $title,
             'url' => $url,
             'thumbnail_url' => $thumbnail_url
         ]);
-
     }
 
     public function refresh_table() 

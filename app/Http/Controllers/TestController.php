@@ -13,10 +13,23 @@ class TestController extends Controller
     }
 
     public function test() {
-        $crawler = $this->makeCrawler('https://valorantnews.jp/archives/51662');
-        $thumbnail_url = $crawler->filter('img.p-articleThumb__img')
-                                 ->eq(1)
-                                 ->attr('src');
-        var_dump($thumbnail_url);
+        $url = 'https://valorantnews.jp/archives/52418';
+        // $url = 'https://valorantnews.jp/archives/52459';
+        $crawler = $this->makeCrawler($url);
+        $thumbnail_url = $crawler->filter('img.p-articleThumb__img');
+
+        // echo($thumbnail_url->eq(1)->attr('src'));
+
+        if(strpos($thumbnail_url->attr('src'), 'data:image') === false) //data:imageが含まれていない場合
+        {
+            echo($thumbnail_url->attr('src'));
+            echo '<br />a';
+        }
+        else //含まれている場合 
+        {
+            echo($thumbnail_url->eq(1)->attr('src'));
+            echo '<br />b';
+            
+        }
     }
 }
